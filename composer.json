@@ -1,0 +1,13 @@
+{
+    "name": "vendor/nolark11-correction",
+    "description": "Description of project Nolark11-Correction.",
+    "authors": [
+        {
+            "name": "yannis.lemaire",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "twig/twig": "v2.5.0"
+    }
+}
