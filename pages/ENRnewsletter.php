@@ -5,7 +5,20 @@ $res = $cnx->prepare($req);
 $res->execute();
 $res->fetch(PDO::FETCH_OBJ);
 
-function infoLettre(string $mail){
-    $req = "INSERT INTO Infolettre(email) VALUES (:mail)";
-    $req->bindParam(':mail', $mail);
+function infolettre(string $email){
+    $req = "INSERT INTO Infolettre(email) VALUES (:email)";
+    $req->bindParam(':email', $mail);
+    $req->execute();
+}
+
+function setConsentement(string $email){
+    $req = "UPDATE INFOLETTRE SET EMAIL = :email";
+    $req->bindParam(':email', $mail);
+    $req->execute();
+}
+
+function removeConsentement(string $email){
+    $req = "DELETE FROM infolettre where email = :email";
+    $req->bindParam(':email', $email);
+    $req->execute();
 }
