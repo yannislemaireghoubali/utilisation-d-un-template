@@ -14,6 +14,12 @@ function infolettre(string $email){
     $req->bindParam(':email', $email);
     $req->execute();
     echo 'Bonjour ' . htmlspecialchars($_POST[$email]) . '!';
+    // Le message
+    $message = "Bienvenue !!";
+    // Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
+    $message2 = wordwrap($message);
+    // Envoi du mail
+    mail($email, 'Mon Sujet', $message2);
 }
 
 function setConsentement(string $email){
