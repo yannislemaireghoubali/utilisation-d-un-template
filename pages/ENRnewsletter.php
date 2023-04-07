@@ -1,24 +1,22 @@
 <?php
 try{
-$cnx = new PDO('mysql:host=127.0.0.1','dbname=E5', 'E5user', 'E5pwd');
-$req = 'SELECT * FROM INFOLETTRE';
-$res = $cnx->prepare($req);
-$res->execute();
-$res->fetch(PDO::FETCH_OBJ);
+    $cnx = new PDO('mysql:host=127.0.0.1','dbname=e5', 'e5utilisateur', 'e5utilisateur');
+    $req = 'SELECT * FROM INFOLETTRE';
+    $res = $cnx->prepare($req);
+    $res->execute();
+    $res->fetch(PDO::FETCH_OBJ);
 }
 catch (PDOException $e) {
     echo 'Erreur: ' . $e->getMessage();
 }
+
 function infolettre(string $email){
     $req = "INSERT INTO Infolettre(email) VALUES (:email)";
     $req->bindParam(':email', $email);
     $req->execute();
     echo 'Bonjour ' . htmlspecialchars($_POST[$email]) . '!';
-    // Le message
     $message = "Bienvenue !!";
-    // Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
     $message2 = wordwrap($message);
-    // Envoi du mail
     mail($email, 'Mon Sujet', $message2);
 }
 
