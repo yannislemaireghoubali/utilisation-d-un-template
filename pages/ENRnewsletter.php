@@ -1,6 +1,9 @@
 <?php
 try{
-    $cnx = new PDO('mysql:host=127.0.0.1','dbname=e5', 'e5utilisateur', 'e5utilisateur');
+    $dsn = 'mysql:host=3306;dbname=e5';
+    $user = 'root';
+    $password = '';
+    $cnx = new PDO($dsn, $user, $password);
     $req = 'SELECT * FROM INFOLETTRE';
     $res = $cnx->prepare($req);
     $res->execute();
@@ -20,9 +23,10 @@ function infolettre(string $email){
     mail($email, 'Mon Sujet', $message2);
 }
 
-function setConsentement(string $email){
-    $req = "UPDATE INFOLETTRE SET EMAIL = :email";
+function setConsentement(string $email, string $newmail){
+    $req = "UPDATE INFOLETTRE SET EMAIL = :email where EMAIL = :ancienemail";
     $req->bindParam(':email', $email);
+    $req->bindParam(':ancienemail', $newmail);
     $req->execute();
 }
 
